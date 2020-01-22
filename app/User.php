@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     const disable = 'false';
     const enable = 'true'; 
@@ -32,7 +33,7 @@ class User extends Authenticatable
         'verification_token'
     ]; 
 
-    public function verified() {
+    public function verifiedFn() {
         return $this->verified == User::enable;
     }
 
@@ -40,7 +41,7 @@ class User extends Authenticatable
         return $this->role == User::userAdmin;
     }
 
-    public function generateToken() {
+    public static function generateToken() {
         return str_random(40);
     } 
 }

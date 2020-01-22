@@ -8,3 +8,4 @@ Route::resource('transactions', 'transaction\transactionController', ['only' => 
 Route::resource('Products', 'Product\ProductController', ['only' => ['index', 'show']]);
 Route::resource('Sellers', 'Seller\SellerController', ['only' => ['index', 'show']]);
 Route::resource('Users', 'User\UserController', ['except' => ['edit', 'create']]);
+Route::post('oauth/token',  '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
